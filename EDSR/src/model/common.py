@@ -57,6 +57,43 @@ class ResBlock(nn.Module):
 
         return res
 
+class ResBlockAtt(nn.Module):
+    def __init__(
+        self, conv, n_feat, kernel_size, reduction,
+            bias=True, bn=False, act=nn.ReLU(True), res_scale=1):
+
+        super(ResBlockAtt, self).__init__()
+        modules_body = []
+        for i in range(2):
+            modules_body.append(conv(n_feat, n_feat, kernel_size, bias=bias))
+            if bn: modules_body.append(nn.BatchNorm2d(n_feat))
+            if i == 0: modules_body.append(act)
+        modules_body.append(CALayer(n_feat, reduction))
+        self.body = nn.Sequential(*modules_body)
+        self.res_scale = res_scale
+
+    def forward(self, x):
+        res = self.body(x)
+        # res = self.body(x).mul(self.res_scale)
+        res += x
+        return res
+
+class ResGroupAtt(nn.Module):
+    def __init__(self, conv, n_feat, kernel_size, reduction, act, res_scale, n_resblocks):
+        super(ResGroupAtt, self).__init__()
+        modules_body = []
+        modules_body = [
+            ResBlockAtt(
+                conv, n_feat, kernel_size, reduction, bias=True, bn=False, act=nn.ReLU(True), res_scale=1) \
+            for _ in range(n_resblocks)]
+        modules_body.append(conv(n_feat, n_feat, kernel_size))
+        self.body = nn.Sequential(*modules_body)
+
+    def forward(self, x):
+        res = self.body(x)
+        res += x
+        return res
+
 class Upsampler(nn.Sequential):
     def __init__(self, conv, scale, n_feats, bn=False, act=False, bias=True):
 

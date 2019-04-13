@@ -3,7 +3,7 @@ import torch
 import utility
 import data
 import model
-import loss
+import loss as l
 from option import args
 from trainer import Trainer
 
@@ -12,6 +12,8 @@ checkpoint = utility.checkpoint(args)
 
 def main():
     global model
+    torch.cuda.device_count()
+    torch.cuda.get_device_name(0)
     if args.data_test == 'video':
         from videotester import VideoTester
         model = model.Model(args, checkpoint)
@@ -21,8 +23,7 @@ def main():
         if checkpoint.ok:
             loader = data.Data(args)
             model = model.Model(args, checkpoint)
-            loss = None
-            loss = loss.Loss(args, checkpoint) if not args.test_only else None
+            loss = l.Loss(args, checkpoint) if not args.test_only else None
             t = Trainer(args, loader, model, loss, checkpoint)
             while not t.terminate():
                 t.train()

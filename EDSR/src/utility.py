@@ -61,7 +61,8 @@ class checkpoint():
                 args.load = ''
 
         if args.reset:
-            os.system('rm -rf ' + self.dir)
+            os.rmdir(self.dir)
+            # os.system('rm -rf ' + self.dir)
             args.load = ''
 
         os.makedirs(self.dir, exist_ok=True)

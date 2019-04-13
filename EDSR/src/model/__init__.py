@@ -26,7 +26,7 @@ class Model(nn.Module):
         self.model = module.make_model(args).to(self.device)
         if args.precision == 'half':
             self.model.half()
-
+        # print(ckp.get_path('model'))
         self.load(
             ckp.get_path('model'),
             pre_train=args.pre_train,
@@ -91,6 +91,7 @@ class Model(nn.Module):
                     **kwargs
                 )
             elif pre_train:
+                # print(os.getcwd())
                 print('Load the model from {}'.format(pre_train))
                 load_from = torch.load(pre_train, **kwargs)
         else:

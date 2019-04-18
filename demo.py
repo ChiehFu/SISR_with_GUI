@@ -62,6 +62,7 @@ class APP(tk.Tk):
   def LoadImg(self):
     self.pros['text'] = ""
     File = askopenfilename(initialdir = "../../") 
+    #print(File)
     if File:
       self.load_image = True
       tmp = File.split('/')
@@ -69,6 +70,7 @@ class APP(tk.Tk):
       self.image_name = self.image_name.split('.')[0] + '.png'
       self.f_name['text'] = self.image_name
       self.ori_image = Image.open(File)
+      os.makedirs(SAVE_DIR, exist_ok=True)
       ori_path = os.path.join(SAVE_DIR, self.image_name)
       self.ori_image.save(ori_path)
       '''
@@ -116,7 +118,7 @@ class APP(tk.Tk):
   def Compute(self):
     print('Call model...')
     #return_code = subprocess.call(cmd, shell=True)
-    cmd = "python main.py --data_test Demo --scale {} --pre_train download --test_only --save_results".format(self.v.get())
+    cmd = "python main.py --data_test Demo --scale {} --n_resblocks 16 --pre_train ../models/model_demo_x{}.pt --test_only --save_results".format(self.v.get(), self.v.get())
     return_code = subprocess.call(cmd, shell=True)
     #print(return_code)
 

@@ -58,7 +58,8 @@ docs/_build/
 target/
 
 # PyTorch
-*.pt
+EDSR/dataset/*
+#*.pt
 *.pdf
 *.png
 *.txt

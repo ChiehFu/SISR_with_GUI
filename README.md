@@ -54,4 +54,4 @@ python main.py --model edsr_att --scale 2 --n_resblocks 6 -n_resgroups 4 --dir_d
 ## Reference
 * [Image Super-Resolution Using Very Deep
 Residual Channel Attention Networks - EDSR](https://github.com/thstkdgus35/EDSR-PyTorch)
-* [http://openaccess.thecvf.com/content_cvpr_2017_workshops/w12/papers/Lim_Enhanced_Deep_Residual_CVPR_2017_paper.pdf - RCAN](https://github.com/yulunzhang/RCAN)
+* [Enhanced Deep Residual Networks for Single Image Super-Resolution - RCAN](https://github.com/yulunzhang/RCAN)

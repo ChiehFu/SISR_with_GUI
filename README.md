@@ -37,17 +37,17 @@ EDSR
 python main.py --model edsr --scale 2 --n_resblocks 16 --test_only --dir_data ../dataset --pre_train ../models/edsr_x2.pt
 
 # Test the model EDSR_ATT
-python main.py --model edsr_att --scale 2 --n_resblocks 6 -n_resgroups 4 --test_only --dir_data ../dataset --pre_train ../models/edsr_att_x2.pt
+python main.py --model edsr_att --scale 2 --n_resblocks 6 --n_resgroups 4 --test_only --dir_data ../dataset --pre_train ../models/edsr_att_x2.pt
 
 # Test the model EDSR_ATT with self_ensemble
 python main.py --model edsr_att --scale 2 --n_resblocks 6 --n_resgroups 4 --test_only --dir_data ../dataset --pre_train ../models/edsr_att_x2.pt --self_ensemble
 
 # Train:
-# Train the baseline model EDSR
+# Train the baseline model EDSRpython main.py --model edsr --scale 2 --n_resblocks 16 --dir_data ../dataset
 python main.py --model edsr --scale 2 --n_resblocks 16 --dir_data ../dataset
 
 # Train the model EDSR_ATT
-python main.py --model edsr_att --scale 2 --n_resblocks 6 -n_resgroups 4 --dir_data ../dataset
+python main.py --model edsr_att --scale 2 --n_resblocks 6 --n_resgroups 4 --dir_data ../dataset
 ```
 
 

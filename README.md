@@ -28,7 +28,7 @@ EDSR
     |-dataset
             |-DIV2K
 ```
-## Train / Test
+### Train / Test
 * Navigate to the directory ```/EDSR/src/```
 * Run the scripts below:
 ```

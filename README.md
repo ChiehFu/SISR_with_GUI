@@ -18,6 +18,7 @@
 * Select the desired scaling up factor(x2/x3/x4) to scale up.
 * Click Upscale, after the process, a window pops up, choose the location to save the result image.
 * The result image will show up after saving.
+* Demo [link](https://youtu.be/xG8n8LJypGk)
 
 ## Train / Test the model
 ### Dataset 

@@ -111,7 +111,8 @@ class APP(tk.Tk):
       cmd = "mv {} {}".format(file_path, directory)
       #print(cmd)
       return_code = subprocess.call(cmd, shell=True)
-
+      cmd = "rm -rf {}/*".format(SAVE_DIR)
+      return_code = subprocess.call(cmd, shell=True)
       self.res_image = Image.open(directory)
       self.res_image.show()
 
